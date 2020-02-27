@@ -2,9 +2,9 @@
 
 module Truemail
   class Auditor
-    Result = Struct.new(:warnings, :configuration, keyword_init: true) do
-      def initialize(warnings: {}, **args)
-        super
+    Result = Struct.new(:warnings, :configuration) do
+      def initialize(warnings: nil, configuration: nil)
+        super(warnings || {}, configuration)
       end
     end
 

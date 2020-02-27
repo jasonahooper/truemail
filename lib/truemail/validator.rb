@@ -5,9 +5,9 @@ module Truemail
     RESULT_ATTRS = %i[success email domain mail_servers errors smtp_debug configuration].freeze
     VALIDATION_TYPES = %i[regex mx smtp].freeze
 
-    Result = Struct.new(*RESULT_ATTRS, keyword_init: true) do
-      def initialize(mail_servers: [], errors: {}, **args)
-        super
+    Result = Struct.new(*RESULT_ATTRS) do
+      def initialize(success: nil, email: nil, domain: nil, mail_servers: nil, errors: nil, smtp_debug: nil, configuration: nil)
+        super(success, email, domain, mail_servers || [], errors || {}, smtp_debug, configuration)
       end
 
       def punycode_email
